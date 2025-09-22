@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KategoriStoreRequest;
+use App\Http\Requests\KategoriUpdateRequest;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -28,9 +30,11 @@ class KategoriController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KategoriStoreRequest $request)
     {
-        //
+        Kategori::create($request->validated());
+        return redirect()->route('kategoris.index')
+        ->with('success','Kategori created successfully.');
     }
 
     /**
@@ -38,7 +42,7 @@ class KategoriController extends Controller
      */
     public function show(Kategori $kategori)
     {
-        //
+        return view('kategoris.show',compact('kategoris'));
     }
 
     /**
@@ -46,15 +50,17 @@ class KategoriController extends Controller
      */
     public function edit(Kategori $kategori)
     {
-        //
+        return view('kategoris.edit',compact('kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(KategoriUpdateRequest $request, Kategori $kategori)
     {
-        //
+        $kategori::update($request->validated());
+        return redirect()->route('kategoris.index')
+        ->with('success','Kategori updated successfully.');
     }
 
     /**
@@ -62,6 +68,8 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        $kategori->delete();
+        return redirect()->route('kategoris.index')
+        ->with('success','Kategori deleted successfully');
     }
 }
