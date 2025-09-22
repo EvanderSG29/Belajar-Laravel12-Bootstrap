@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Kategori') }}</div>
+                <div class="card-header">Kategori</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Selamat datang! di halaman kategori') }}   {{ Auth::user()->name }}
+                    Selamat datang! di halaman kategori   {{ Auth::user()->name }}
                 </div>
             </div>
         </div>
