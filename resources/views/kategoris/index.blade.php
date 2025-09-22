@@ -8,13 +8,11 @@
                 <div class="card-header">Kategori</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    @section('success')
+                    <div class="alert alert-success" role="alert">{{ $value }}</div>
+                    @endsection
 
-                    Selamat datang! di halaman kategori   {{ Auth::user()->name }}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end"></div>
                 </div>
             </div>
         </div>
