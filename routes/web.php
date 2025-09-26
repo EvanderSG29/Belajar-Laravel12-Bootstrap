@@ -11,6 +11,12 @@ Route::get('/', function () {
 
 Auth::routes();
 //menambahkan route kategoris
-Route::resource('kategoris', KategoriController::class);
+Route::resource('categories', App\Http\Controllers\KategoriController::class)->parameters(['categories' => 'kategori']);
+
+//menambahkan route books
+Route::resource('books', App\Http\Controllers\BookController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//menambahkan route borrows
+Route::resource('borrows', App\Http\Controllers\BorrowController::class);
