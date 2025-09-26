@@ -2,67 +2,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrow;
+use App\Models\Book;
+use App\Models\DataBorrow;
 use Illuminate\Http\Request;
-use App\Http\Requests\BookStoreRequest;
-use App\Http\Requests\BookUpdateRequest;
-
+use App\Http\Requests\BorrowStoreRequest;
+use App\Http\Requests\BorrowUpdateRequest;
 
 class BorrowController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        Borrow::create($request->validated());
-        return redirect()->route('borrows.index')
-            ->with('success', 'borrowed has added.');
+        $borrows = Borrow::with(['dataBorrow', 'book'])->paginate(10);
+        return view('borrows.index', compact('borrows'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('borrows.create');
+        $books = Book::all();
+        $databorrows = DataBorrow::all();
+        return view('borrows.create', compact('books', 'databorrows'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(BorrowStoreRequest $request)
     {
-        $validated = $request->validate([
-            'title_book' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'publisher' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-        ]);
-        Book::create($validated);
-        return redirect()->route('books.index')->with('success', 'Buku berhasil disimpan!');
+        Borrow::create($request->validated());
+        return redirect()->route('borrows.index')->with('success', 'Borrow added successfully.');
     }
 
-    public function show(Book $book)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Borrow $borrow)
     {
-        return view('books.show', compact('book'));
+        $borrow->load(['dataBorrow', 'book']);
+        return view('borrows.show', compact('borrow'));
     }
 
-    public function edit(Book $book)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Borrow $borrow)
     {
-        return view('books.edit', compact('book'));
+        $books = Book::all();
+        $databorrows = DataBorrow::all();
+        return view('borrows.edit', compact('borrow', 'books', 'databorrows'));
     }
 
-    public function update(Request $request, Book $book)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(BorrowUpdateRequest $request, Borrow $borrow)
     {
-        $validated = $request->validate([
-            'title_book' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'publisher' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-        ]);
-        $book->update($validated);
-        return redirect()->route('books.index')->with('success', 'Buku berhasil diupdate!');
+        $borrow->update($request->validated());
+        return redirect()->route('borrows.index')->with('success', 'Borrow updated successfully.');
     }
 
-    public function destroy(Book $book)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Borrow $borrow)
     {
-        $book->delete();
-        return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus!');
+        $borrow->delete();
+        return redirect()->route('borrows.index')->with('success', 'Borrow deleted successfully.');
     }
 }

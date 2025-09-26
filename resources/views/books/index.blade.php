@@ -15,9 +15,6 @@
                         </div>
                     @endif
                     <div class="d-flex justify-content-between mb-3 gap-2">
-                        <button type="button" class="btn btn-secondary" onclick="window.location='{{ route("borrows.index") }}'">
-                            Borrow Book
-                        </button>
                         
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             + Add Book

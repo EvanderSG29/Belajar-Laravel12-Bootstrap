@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_pepinjams', function (Blueprint $table) {
+        Schema::create('databorrows', function (Blueprint $table) {
             $table->id();
-            $table->string('name_bowrower');
+            $table->string('name_borrower');
             $table->string('class');
             $table->string('no_hp');
             $table->enum('gender', ['Male', 'Female']);

@@ -11,7 +11,7 @@ class DataBorrowStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class DataBorrowStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_borrower' => 'required|string|max:255',
+            'class' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:20',
+            'gender' => 'required|in:Male,Female',
         ];
     }
 }
