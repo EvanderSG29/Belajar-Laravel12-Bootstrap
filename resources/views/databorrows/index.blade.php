@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Borrow Book') }}</div>
+                <div class="card-header d-flex justify-content-between">
+                    {{ __('Borrow Book') }}
+                     <a href="{{ route('borrows.index') }}" class="btn btn-secondary">Back</a>
+                </div>
 
                 <div class="card-body">
 
@@ -16,7 +19,7 @@
                     @endif
 
                     <div class="d-flex justify-content-end mb-3 gap-2">
-                        <a href="{{ route('databorrows.create') }}" class="btn btn-success">Add Patron</a>
+                        <a href="{{ route('databorrows.create') }}" class="btn btn-success">Add Borrower</a>
                     </div>
 
                     <table class="table table-bordered">
