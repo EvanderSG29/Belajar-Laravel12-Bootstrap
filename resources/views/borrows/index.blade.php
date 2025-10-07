@@ -16,9 +16,15 @@
                     @endif
 
                     <div class="d-flex justify-center-end mb-3 gap-2">
+<<<<<<< HEAD
                         <a href="{{ route('borrows.create') }}" class="btn btn-success">+ Create Borrow</a>
 
                         <a href="{{ route('databorrows.index') }}" class="btn btn-secondary">Patron</a>
+=======
+                        <a href="{{ route('borrows.create') }}" class="btn btn-success">+ Add Borrower</a>
+
+                        <a href="{{ route('databorrows.index') }}" class="btn btn-secondary">Borrowed</a>
+>>>>>>> 0d5137cdab1c04e328dafc0d33a58b4b112d515e
                     </div>
 
                     <table class="table table-bordered">

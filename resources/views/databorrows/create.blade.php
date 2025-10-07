@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h5>{{ __('Create Patron') }}</h5>
+                        <h5>{{ __('Create borrower') }}</h5>
                         <a href="{{ route('databorrows.index') }}" class="btn btn-secondary">Back</a>
                     </div>
                 </div>
