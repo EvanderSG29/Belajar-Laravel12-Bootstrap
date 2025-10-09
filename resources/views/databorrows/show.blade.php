@@ -24,7 +24,7 @@
                         </tr>
                         <tr>
                             <th>Phone Number</th>
-                            <td>{{ $databorrow->no_hp }}</td>
+                            <td>{{ $databorrow->formatted_phone_number }}</td>
                         </tr>
                         <tr>
                             <th>Gender</th>

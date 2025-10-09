@@ -1,45 +1,26 @@
-# TODO: Translate Laravel Project to English
+# TODO List for DataBorrow Validation and Form Updates
 
-## Overview
-Translated all Indonesian elements to English: renamed 'Kategori' to 'Category', updated models, controllers, requests, migrations, routes, views, and messages. Database migrated fresh with new schema.
+## Completed Tasks
+- [x] Update `resources/views/databorrows/create.blade.php`:
+  - [x] Add maxlength="60" and pattern for name_borrower to allow only letters and spaces, max 60 chars.
+  - [x] Change class input to dropdown with options: X PPLG, X PMN, X HTL, XI PPLG, XI PMN, XI HTL, XI TJKT.
+  - [x] Update no_hp input to have +62 prefix, pattern for 10-13 digits, maxlength, inputmode.
+- [x] Update `app/Http/Requests/DataBorrowStoreRequest.php`:
+  - [x] Change name_borrower validation to max:60 and regex /^[a-zA-Z\s]+$/.
+  - [x] Change class validation to in: the specified options.
+  - [x] Change no_hp validation to regex /^[0-9]{10,13}$/.
+- [x] Update `resources/views/databorrows/index.blade.php`:
+  - [x] Format phone number display as +62 XXX-XXXX-XXXXX using accessor.
+- [x] Update `app/Http/Requests/DataBorrowUpdateRequest.php`:
+  - [x] Add the same validation rules as store.
+- [x] Update `resources/views/databorrows/edit.blade.php`:
+  - [x] Apply same changes as create for name_borrower, class, no_hp.
+- [x] Update `resources/views/databorrows/show.blade.php`:
+  - [x] Format phone number display as +62 XXX-XXXX-XXXXX using accessor.
+- [x] Update `app/Models/DataBorrow.php`:
+  - [x] Add `getFormattedPhoneNumberAttribute` accessor to remove leading zero and format phone number.
 
-## Steps Completed
-
-1. **Rename and Update Models/Controllers/Requests**
-   - Renamed `Kategori` model to `Category`, updated table to 'categories', field to 'name'.
-   - Renamed `KategoriController` to `CategoryController`.
-   - Renamed `KategoriStoreRequest` to `CategoryStoreRequest`, updated rules.
-   - Renamed `KategoriUpdateRequest` to `CategoryUpdateRequest`, updated rules.
-   - Renamed `bookController` to `BookController` (file renamed).
-
-2. **Update Migrations**
-   - Renamed migration file to `create_categories_table.php`.
-   - Updated table name to 'categories', column to 'name'.
-
-3. **Update Controllers**
-   - Updated `BookController` messages to English.
-   - Updated `CategoryController` to use `Category` model and requests.
-   - Updated references from `Kategori` to `Category`.
-
-4. **Update Routes**
-   - Changed use and resource route to `CategoryController`.
-
-5. **Update Views**
-   - Updated category views to use `$category` variable, `name` field.
-   - Updated book views selects to use `$cat->name`.
-   - Updated form names and errors.
-
-6. **Update Book Model Relationship**
-   - Changed relationship to `Category::class`, 'category', 'name'.
-
-7. **Clear Caches and Migrate**
-   - Cleared config, route, view caches.
-   - Ran `migrate:fresh` successfully.
-
-## Progress
-- [x] Rename models, controllers, requests
-- [x] Update migrations
-- [x] Update controllers and routes
-- [x] Update views
-- [x] Update relationships
-- [x] Clear caches and migrate
+## Followup Steps
+- [ ] Test the validation by attempting to create/edit a data borrow with invalid inputs.
+- [ ] Verify the phone number formatting in index and show views, including cases with and without leading zero.
+- [ ] Ensure no errors in Laravel logs.

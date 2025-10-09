@@ -22,9 +22,9 @@ class DataBorrowStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_borrower' => 'required|string|max:255',
-            'class' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:20',
+            'name_borrower' => 'required|string|max:60|regex:/^[a-zA-Z\s]+$/',
+            'class' => 'required|in:X PPLG,X PMN,X HTL,XI PPLG,XI PMN,XI HTL,XI TJKT',
+            'no_hp' => 'required|regex:/^[0-9]{10,13}$/',
             'gender' => 'required|in:Male,Female',
         ];
     }

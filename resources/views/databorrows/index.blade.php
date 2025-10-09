@@ -40,7 +40,7 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $databorrow->name_borrower }}</td>
                                 <td>{{ $databorrow->class }}</td>
-                                <td>{{ $databorrow->no_hp }}</td>
+                                <td>{{ $databorrow->formatted_phone_number }}</td>
                                 <td>{{ $databorrow->gender }}</td>
                                 <td>
                                     <a href="{{ route('databorrows.show', $databorrow->id) }}" class="btn btn-info btn-sm">Show</a>
