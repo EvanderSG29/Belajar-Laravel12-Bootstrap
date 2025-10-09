@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h5>{{ __('Create Borrow') }}</h5>
+                        <h5>{{ __('Create Borrower') }}</h5>
                         <a href="{{ route('borrows.index') }}" class="btn btn-secondary">Back</a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
 
                         <div class="mb-3">
                             <label for="borrow_date" class="form-label">Borrow Date</label>
-                            <input type="date" name="borrow_date" id="borrow_date" class="form-control @error('borrow_date') is-invalid @enderror" value="{{ old('borrow_date') }}" required>
+                            <input type="date" name="borrow_date" id="borrow_date" class="form-control @error('borrow_date') is-invalid @enderror" value="{{ old('borrow_date', now()->toDateString()) }}" required readonly>
                             @error('borrow_date')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

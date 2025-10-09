@@ -24,8 +24,8 @@ class BorrowStoreRequest extends FormRequest
         return [
             'data_borrow_id' => 'required|exists:databorrows,id',
             'book_id' => 'required|exists:books,id',
-            'borrow_date' => 'required|date',
-            'return_date' => 'nullable|date|after:borrow_date',
+            'borrow_date' => ['required', 'date'],
+            'return_date' => ['nullable', 'date', 'after_or_equal:borrow_date'],
             'status' => 'required|in:borrowed,returned',
         ];
     }
