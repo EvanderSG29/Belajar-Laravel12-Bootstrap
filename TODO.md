@@ -1,31 +1,45 @@
-# TODO: Remake Database Configuration and Verify CRUD Views
+# TODO: Translate Laravel Project to English
 
 ## Overview
-Reset database to MySQL (db_pos) via .env update (user-confirmed). Views for DataBorrow and Borrow CRUD are fully implemented with Bootstrap (tables, forms, selects for relations, error handling, pagination). Minor fix: Initialize $i in index.blade.php loops to avoid undefined variable. Proceed step-by-step, updating this file after each major step.
+Translated all Indonesian elements to English: renamed 'Kategori' to 'Category', updated models, controllers, requests, migrations, routes, views, and messages. Database migrated fresh with new schema.
 
-## Steps
+## Steps Completed
 
-1. **Clear Laravel Caches** (Ensure fresh config after .env change)
-   - Run `php artisan config:clear`
-   - Run `php artisan route:clear`
-   - Run `php artisan view:clear`
+1. **Rename and Update Models/Controllers/Requests**
+   - Renamed `Kategori` model to `Category`, updated table to 'categories', field to 'name'.
+   - Renamed `KategoriController` to `CategoryController`.
+   - Renamed `KategoriStoreRequest` to `CategoryStoreRequest`, updated rules.
+   - Renamed `KategoriUpdateRequest` to `CategoryUpdateRequest`, updated rules.
+   - Renamed `bookController` to `BookController` (file renamed).
 
-2. **Remake Database** (Fresh migration to reset tables)
-   - Run `php artisan migrate:fresh` (drops and recreates all tables, including databorrows, borrows, books, etc.)
-   - Optional: Run `php artisan db:seed` if seeders exist for testing data.
+2. **Update Migrations**
+   - Renamed migration file to `create_categories_table.php`.
+   - Updated table name to 'categories', column to 'name'.
 
-3. **Fix Minor View Issues** (Ensure no PHP errors)
-   - Edit `resources/views/databorrows/index.blade.php`: Add `@php $i = 0; @endphp` before `@foreach`.
-   - Edit `resources/views/borrows/index.blade.php`: Add `@php $i = 0; @endphp` before `@foreach`.
+3. **Update Controllers**
+   - Updated `BookController` messages to English.
+   - Updated `CategoryController` to use `Category` model and requests.
+   - Updated references from `Kategori` to `Category`.
 
-4. **Test Functionality**
-   - Start server: `php artisan serve`
-   - Use browser to visit http://127.0.0.1:8000/databorrows (create/view/edit/delete patrons).
-   - Visit http://127.0.0.1:8000/borrows (create loans with borrower/book selects, view relations).
-   - Check for errors in logs; verify data persists in db_pos.
+4. **Update Routes**
+   - Changed use and resource route to `CategoryController`.
+
+5. **Update Views**
+   - Updated category views to use `$category` variable, `name` field.
+   - Updated book views selects to use `$cat->name`.
+   - Updated form names and errors.
+
+6. **Update Book Model Relationship**
+   - Changed relationship to `Category::class`, 'category', 'name'.
+
+7. **Clear Caches and Migrate**
+   - Cleared config, route, view caches.
+   - Ran `migrate:fresh` successfully.
 
 ## Progress
-- [x] Step 1: Clear Caches
-- [x] Step 2: Remake Database
-- [x] Step 3: Fix Views
-- [x] Step 4: Test
+- [x] Rename models, controllers, requests
+- [x] Update migrations
+- [x] Update controllers and routes
+- [x] Update views
+- [x] Update relationships
+- [x] Clear caches and migrate

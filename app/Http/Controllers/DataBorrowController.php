@@ -32,7 +32,7 @@ class DataBorrowController extends Controller
     public function store(DataBorrowStoreRequest $request)
     {
         DataBorrow::create($request->validated());
-        return redirect()->route('databorrows.index')->with('success', 'Patron added successfully.');
+        return redirect()->route('databorrows.index')->with('success', 'borrower added successfully.');
     }
 
     /**
@@ -57,7 +57,7 @@ class DataBorrowController extends Controller
     public function update(DataBorrowUpdateRequest $request, DataBorrow $databorrow)
     {
         $databorrow->update($request->validated());
-        return redirect()->route('databorrows.index')->with('success', 'Patron updated successfully.');
+        return redirect()->route('databorrows.index')->with('success', 'borrower updated successfully.');
     }
 
     /**
@@ -66,6 +66,6 @@ class DataBorrowController extends Controller
     public function destroy(DataBorrow $databorrow)
     {
         $databorrow->delete();
-        return redirect()->route('databorrows.index')->with('success', 'Patron deleted successfully.');
+        return redirect()->route('databorrows.index')->with('success', 'borrower deleted successfully.');
     }
 }

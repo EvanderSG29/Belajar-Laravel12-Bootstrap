@@ -15,8 +15,8 @@ class Book extends Model
     ];
 
 
-    public function kategori()
+    public function category()
 {
-    return $this->belongsTo(Kategori::class, 'kategori', 'kategori');
+    return $this->belongsTo(Category::class, 'category', 'name');
 }
 }

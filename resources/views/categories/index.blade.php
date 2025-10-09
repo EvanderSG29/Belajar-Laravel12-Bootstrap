@@ -32,10 +32,10 @@
                                 <form action="{{ route('categories.store') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
-                                        <label for="inputCategory" class="form-label"><strong>Category:</strong></label>
-                                        <input type="text" name="kategori" id="inputCategory"
-                                            class="form-control @error('kategori') is-invalid @enderror" required>
-                                        @error('kategori')
+                                        <label for="inputName" class="form-label"><strong>Category:</strong></label>
+                                        <input type="text" name="name" id="inputName"
+                                            class="form-control @error('name') is-invalid @enderror" required>
+                                        @error('name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -59,14 +59,14 @@
                         </thead>
 
                         <tbody>
-                            @forelse ($kategoris as $kategori)
+                            @forelse ($categories as $category)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $kategori->kategori }}</td>
+                                    <td>{{ $category->name }}</td>
                                     <td>
-                                        <form action="{{ route('categories.destroy', $kategori->id) }}" method="POST">
-                                            <a href="{{ route('categories.show', $kategori->id) }}" class="btn btn-info btn-sm">Show</a>
-                                            <a href="{{ route('categories.edit', $kategori->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-info btn-sm">Show</a>
+                                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
@@ -81,7 +81,7 @@
                         </tbody>
                     </table>
 
-                    {{ $kategoris->links() }}
+                    {{ $categories->links() }}
 
                 </div>
             </div>

@@ -57,7 +57,7 @@
                                         <select name="category" id="category" class="form-control @error('category') is-invalid @enderror" required>
                                             <option value="">Select Category</option>
                                             @foreach($categories as $cat)
-                                                <option value="{{ $cat->kategori }}">{{ $cat->kategori }}</option>
+                                                <option value="{{ $cat->name }}">{{ $cat->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('category')

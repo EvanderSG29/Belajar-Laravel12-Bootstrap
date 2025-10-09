@@ -17,7 +17,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::latest()->paginate(10);
-        $categories = \App\Models\Kategori::all();
+        $categories = \App\Models\Category::all();
         $i = ($books->currentPage() - 1) * $books->perPage();
         return view('books.index', compact('books', 'i', 'categories'));
     }
@@ -36,7 +36,7 @@ class BookController extends Controller
             'category' => 'required|string|max:255',
         ]);
         Book::create($validated);
-        return redirect()->route('books.index')->with('success', 'Buku berhasil disimpan!');
+        return redirect()->route('books.index')->with('success', 'Book saved successfully!');
     }
 
     public function show(Book $book)
@@ -46,7 +46,8 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('books.edit', compact('book'));
+        $categories = \App\Models\Category::all();
+        return view('books.edit', compact('book', 'categories'));
     }
 
     public function update(Request $request, Book $book)
@@ -58,12 +59,12 @@ class BookController extends Controller
             'category' => 'required|string|max:255',
         ]);
         $book->update($validated);
-        return redirect()->route('books.index')->with('success', 'Buku berhasil diupdate!');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully!');
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus!');
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully!');
     }
 }

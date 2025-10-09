@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -10,8 +10,8 @@ Route::get('/', function () {
 
 
 Auth::routes();
-//menambahkan route kategoris
-Route::resource('categories', App\Http\Controllers\KategoriController::class)->parameters(['categories' => 'kategori']);
+//adding category routes
+Route::resource('categories', App\Http\Controllers\CategoryController::class)->parameters(['categories' => 'category']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
