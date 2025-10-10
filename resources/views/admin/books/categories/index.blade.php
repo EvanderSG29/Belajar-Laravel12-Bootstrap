@@ -54,7 +54,7 @@
                             <tr>
                                 <th width="80px">No</th>
                                 <th>Category</th>
-                                <th width="250px">Action</th>
+                                {{-- <th width="250px">Action</th> --}}
                             </tr>
                         </thead>
 
@@ -63,7 +63,7 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $category->name }}</td>
-                                    <td>
+                                    {{-- <td>
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
                                             <a href="{{ route('categories.show', $category->id) }}" class="btn btn-info btn-sm">Show</a>
                                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
@@ -71,7 +71,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @empty
                                 <tr>

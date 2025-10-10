@@ -15,19 +15,27 @@ class RoleMiddleware
       * @param  string  $role
       * @return mixed
       */
-    public function handle(Request $request, Closure $next, string $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
         if (!Auth::check()) {
-             return redirect('/login');
-         }
+            $roleToRedirect = $roles[0] ?? 'user';
+            return redirect()->route($roleToRedirect . '.login');
+        }
 
-         $user = Auth::user();
+        $userRole = Auth::user()->role;
+        $roleMap = [
+            'user' => 0,
+            'staff' => 1,
+            'admin' => 2,
+        ];
 
-        if ($user->role !== $role) {
-             abort(403, 'Unauthorized');
-         }
+        foreach ($roles as $role) {
+            if (isset($roleMap[$role]) && $userRole == $roleMap[$role]) {
+                return $next($request);
+            }
+        }
 
-         return $next($request);
+        abort(403, 'Unauthorized');
     }
  }
 

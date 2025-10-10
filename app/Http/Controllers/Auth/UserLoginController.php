@@ -1,15 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class UserLoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest:user')->except('logout');
+    }
+
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.userlogin');
     }
 
     public function login(Request $request)
@@ -19,20 +25,21 @@ class UserLoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('user')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            $user = Auth::user();
-            if ($user->role === 'officer') {
-                return redirect()->intended(route('officer.dashboard'));
-            } elseif ($user->role === 'user') {
-                return redirect()->intended(route('user.history'));
-            }
+            return redirect()->intended(route('home'));
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('user')->logout();
+        return redirect()->route('user.login');
     }
 
     public function history()

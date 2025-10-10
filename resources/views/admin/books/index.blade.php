@@ -15,9 +15,13 @@
                         </div>
                     @endif
                     <div class="d-flex justify-content-between mb-3 gap-2">
-                        
+
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             + Add Book
+                        </button>
+                        
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="link CategoryModal">
+                            + Add Category
                         </button>
                     </div>
 
@@ -82,7 +86,7 @@
                                 <th>Author</th>
                                 <th>Publisher</th>
                                 <th>Category</th>
-                                <th>Action</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -93,7 +97,7 @@
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->publisher }}</td>
                                 <td>{{ $book->category }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm">Show</a>
                                     <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
@@ -101,7 +105,7 @@
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('are you sure to delete?')">Delete</button>
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

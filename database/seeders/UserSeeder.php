@@ -12,32 +12,32 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create officer
+        // Create admin
         \App\Models\User::updateOrCreate(
-            ['email' => 'officer@example.com'],
+            ['email' => 'admin@email.com'],
             [
-                'name' => 'Officer User',
+                'name' => 'Admin',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456789'),
-                'role' => 'officer',
+                'role' => 2,
             ]
         );
 
-        // Create students
+        // Create users
         \App\Models\User::updateOrCreate(
-            ['email' => 'student1@example.com'],
+            ['email' => 'student1@email.com'],
             [
                 'name' => 'Student One',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456789'),
-                'role' => 'user',
+                'role' => 0,
             ]
         );
 
         \App\Models\User::updateOrCreate(
-            ['email' => 'student2@example.com'],
+            ['email' => 'student2@email.com'],
             [
                 'name' => 'Student Two',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456789'),
-                'role' => 'user',
+                'role' => 0,
             ]
         );
     }

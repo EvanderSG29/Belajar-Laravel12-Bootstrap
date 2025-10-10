@@ -1,26 +1,26 @@
-# TODO List for DataBorrow Validation and Form Updates
+# TODO: Simplify Laravel Project and Recreate Database with Simple Roles
 
-## Completed Tasks
-- [x] Update `resources/views/databorrows/create.blade.php`:
-  - [x] Add maxlength="60" and pattern for name_borrower to allow only letters and spaces, max 60 chars.
-  - [x] Change class input to dropdown with options: X PPLG, X PMN, X HTL, XI PPLG, XI PMN, XI HTL, XI TJKT.
-  - [x] Update no_hp input to have +62 prefix, pattern for 10-13 digits, maxlength, inputmode.
-- [x] Update `app/Http/Requests/DataBorrowStoreRequest.php`:
-  - [x] Change name_borrower validation to max:60 and regex /^[a-zA-Z\s]+$/.
-  - [x] Change class validation to in: the specified options.
-  - [x] Change no_hp validation to regex /^[0-9]{10,13}$/.
-- [x] Update `resources/views/databorrows/index.blade.php`:
-  - [x] Format phone number display as +62 XXX-XXXX-XXXXX using accessor.
-- [x] Update `app/Http/Requests/DataBorrowUpdateRequest.php`:
-  - [x] Add the same validation rules as store.
-- [x] Update `resources/views/databorrows/edit.blade.php`:
-  - [x] Apply same changes as create for name_borrower, class, no_hp.
-- [x] Update `resources/views/databorrows/show.blade.php`:
-  - [x] Format phone number display as +62 XXX-XXXX-XXXXX using accessor.
-- [x] Update `app/Models/DataBorrow.php`:
-  - [x] Add `getFormattedPhoneNumberAttribute` accessor to remove leading zero and format phone number.
+## Steps to Complete
 
-## Followup Steps
-- [ ] Test the validation by attempting to create/edit a data borrow with invalid inputs.
-- [ ] Verify the phone number formatting in index and show views, including cases with and without leading zero.
-- [ ] Ensure no errors in Laravel logs.
+1. **Edit Migration**: Update `2025_10_06_061315_add_role_to_users_table.php` to change role enum to ['user', 'admin'].
+2. **Edit UserSeeder**: Remove staff user creation, keep only admin and user.
+3. **Edit Auth Config**: Remove staff guard and provider from `config/auth.php`.
+4. **Edit RoleMiddleware**: Change to check Auth::user()->role instead of separate guards.
+5. **Edit Routes**: Remove staff login routes from `routes/web.php`.
+6. **Delete StaffLoginController**: Remove `app/Http/Controllers/Auth/StaffLoginController.php`.
+7. **Remove Staff Routes**: Remove staff group routes from `routes/web.php`.
+8. **Run Migrations Fresh**: Execute `php artisan migrate:fresh --seed` to recreate database.
+9. **Remove Unnecessary Views**: Delete staff-related views in `resources/views/Staff/`.
+10. **Test Application**: Verify login and role-based access work.
+
+## Progress
+- [x] Step 1
+- [x] Step 2
+- [x] Step 3
+- [x] Step 4
+- [x] Step 5
+- [x] Step 6
+- [x] Step 7
+- [x] Step 8
+- [x] Step 9
+- [x] Step 10
